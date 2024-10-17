@@ -21,15 +21,17 @@ nav {
   background-color: #333; /* Dark background for navigation */
   text-align: center;
   padding: 5px; /* Reduced padding */
+  display: flex; /* Use Flexbox for horizontal layout */
+  justify-content: center; /* Center the items */
 }
 
 nav a {
   color: white;
   text-decoration: none;
   font-size: 16px; /* Default font size */
-  margin: 0; /* No margin */
+  margin: 0 10px; /* Margin between links */
   padding: 5px; /* Minimal padding */
-  display: inline; /* Display inline */
+  display: inline-block; /* Keep links inline */
 }
 
 /* Remove hover background effect for links */
@@ -82,4 +84,15 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
   nav a {
-    font-size: 14px; /* Smaller font size for mobile
+    font-size: 14px; /* Smaller font size for mobile */
+    padding: 5px; /* Minimal padding */
+  }
+  
+  h1, h2 {
+    font-size: 20px; /* Reduce heading size for mobile */
+  }
+  
+  section {
+    margin: 10px;
+  }
+}
