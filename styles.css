@@ -19,23 +19,22 @@ header {
 /* Navigation Bar */
 nav {
   background-color: #333; /* Dark background for navigation */
-  padding: 10px;
   text-align: center;
+  padding: 5px; /* Reduced padding */
 }
 
 nav a {
   color: white;
-  margin: 0 10px;
   text-decoration: none;
-  font-size: 16px;
-  padding: 10px;
-  display: inline-block; /* Keep navigation items inline */
+  font-size: 16px; /* Default font size */
+  margin: 0; /* No margin */
+  padding: 5px; /* Minimal padding */
+  display: inline; /* Display inline */
 }
 
+/* Remove hover background effect for links */
 nav a:hover {
-  background-color: #5d4037; /* Dark brown background on hover */
-  color: white;
-  border-radius: 5px;
+  color: #f39c12; /* Change color on hover */
 }
 
 /* Section Styling */
@@ -47,13 +46,15 @@ section {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Heading Styling */
 h1, h2 {
   background-color: #5d4037; /* Dark brown for headings */
   color: white;
-  padding: 10px;
+  padding: 10px; /* Padding for heading background */
   border-radius: 5px;
 }
 
+/* Heading Font Sizes */
 h1 {
   font-size: 28px;
 }
@@ -81,15 +82,4 @@ footer {
 /* Responsive Design */
 @media (max-width: 768px) {
   nav a {
-    font-size: 14px; /* Smaller font size for navigation on mobile */
-    padding: 8px;
-  }
-  
-  h1, h2 {
-    font-size: 20px; /* Reduce heading size for mobile */
-  }
-  
-  section {
-    margin: 10px;
-  }
-}
+    font-size: 14px; /* Smaller font size for mobile
