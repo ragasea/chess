@@ -1,11 +1,95 @@
-/* styles.css - Global styles for the website */
-
-/* Apply the same background color for all pages */
+/* General Page Style */
 body {
-  background-color: #f5f5f5; /* Light gray background */
-  font-family: Arial, sans-serif; /* Set a global font style */
-  color: #333; /* Text color */
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4; /* Light background */
+  color: #333;
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+}
+
+/* Header Styling */
+header {
+  background-color: #5d4037; /* Dark brown background for header */
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 24px;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: #333; /* Dark background for navigation */
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 16px;
+  padding: 10px;
+  display: inline-block; /* Keep navigation items inline */
+}
+
+nav a:hover {
+  background-color: #5d4037; /* Dark brown background on hover */
+  color: white;
+  border-radius: 5px;
+}
+
+/* Section Styling */
+section {
+  padding: 20px;
+  margin: 20px;
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  background-color: #5d4037; /* Dark brown for headings */
+  color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+p {
+  line-height: 1.6;
+  margin: 10px 0;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  nav a {
+    font-size: 14px; /* Smaller font size for navigation on mobile */
+    padding: 8px;
+  }
+  
+  h1, h2 {
+    font-size: 20px; /* Reduce heading size for mobile */
+  }
+  
+  section {
+    margin: 10px;
+  }
 }
