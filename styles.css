@@ -16,29 +16,6 @@ header {
   font-size: 24px;
 }
 
-/* Navigation Bar */
-nav {
-  background-color: #333; /* Dark background for navigation */
-  text-align: center;
-  padding: 5px; /* Reduced padding */
-  display: flex; /* Use Flexbox for horizontal layout */
-  justify-content: center; /* Center the items */
-}
-
-nav a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px; /* Default font size */
-  margin: 0 10px; /* Margin between links */
-  padding: 5px; /* Minimal padding */
-  display: inline-block; /* Keep links inline */
-}
-
-/* Remove hover background effect for links */
-nav a:hover {
-  color: #f39c12; /* Change color on hover */
-}
-
 /* Section Styling */
 section {
   padding: 20px;
@@ -46,6 +23,30 @@ section {
   background-color: white;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Bar */
+nav {
+  background-color: transparent; /* No background for navigation */
+  text-align: center;
+  padding: 5px; /* Reduced padding */
+  display: flex; /* Use Flexbox for horizontal layout */
+  justify-content: center; /* Center the items */
+  margin-top: 20px; /* Space above the nav */
+}
+
+nav a {
+  color: #5d4037; /* Dark brown color for links */
+  text-decoration: none;
+  font-size: 16px; /* Default font size */
+  margin: 0 10px; /* Margin between links */
+  padding: 5px; /* Minimal padding */
+  display: inline-block; /* Keep links inline */
+}
+
+/* Hover Effect for Links */
+nav a:hover {
+  color: #f39c12; /* Change color on hover */
 }
 
 /* Heading Styling */
@@ -76,8 +77,6 @@ footer {
   color: white;
   text-align: center;
   padding: 10px;
-  position: fixed;
-  bottom: 0;
   width: 100%;
 }
 
