@@ -3,41 +3,167 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chess Board</title>
+  <title>Interactive Chessboard</title>
   <style>
-    .chess-board {
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-color: #f0f0f0;
+    }
+
+    .board {
       display: grid;
-      grid-template-columns: repeat(8, 50px);
-      grid-template-rows: repeat(8, 50px);
-      border: 2px solid black;
-      width: 400px;
-      height: 400px;
+      grid-template-columns: repeat(8, 60px);
+      grid-template-rows: repeat(8, 60px);
+      border: 2px solid #333;
+      position: relative;
     }
-    .chess-board div {
-      width: 50px;
-      height: 50px;
+
+    .square {
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
-    .black {
-      background-color: #769656;
+
+    .square.light {
+      background-color: #f0d9b5;
     }
-    .white {
-      background-color: #eeeed2;
+
+    .square.dark {
+      background-color: #b58863;
+    }
+
+    .notation {
+      position: absolute;
+      font-size: 12px;
+      pointer-events: none;
+      color: #333;
+    }
+
+    .notation-file {
+      bottom: -20px;
+      text-align: center;
+      width: 60px;
+    }
+
+    .notation-rank {
+      left: -20px;
+      text-align: center;
+      height: 60px;
+      line-height: 60px;
+    }
+
+    .piece {
+      font-size: 40px;
+      cursor: grab;
+    }
+
+    .piece:active {
+      cursor: grabbing;
     }
   </style>
 </head>
 <body>
-  <div class="chess-board">
-    <!-- Generate alternating black and white squares -->
-    <script>
-      const board = document.querySelector('.chess-board');
-      for (let row = 0; row < 8; row++) {
-        for (let col = 0; col < 8; col++) {
+  <div class="board" id="chessboard"></div>
+
+  <script>
+    const board = document.getElementById('chessboard');
+    const pieces = {
+      'P': '♙', 'p': '♟',
+      'R': '♖', 'r': '♜',
+      'N': '♘', 'n': '♞',
+      'B': '♗', 'b': '♝',
+      'Q': '♕', 'q': '♛',
+      'K': '♔', 'k': '♚',
+    };
+
+    const initialPosition = [
+      'rnbqkbnr',
+      'pppppppp',
+      '        ',
+      '        ',
+      '        ',
+      '        ',
+      'PPPPPPPP',
+      'RNBQKBNR',
+    ];
+
+    function createChessBoard() {
+      for (let rank = 8; rank >= 1; rank--) {
+        for (let file = 0; file < 8; file++) {
           const square = document.createElement('div');
-          square.className = (row + col) % 2 === 0 ? 'white' : 'black';
+          square.classList.add('square', (rank + file) % 2 === 0 ? 'dark' : 'light');
+          square.dataset.rank = rank;
+          square.dataset.file = String.fromCharCode(97 + file);
           board.appendChild(square);
+
+          const pieceCode = initialPosition[8 - rank][file];
+          if (pieceCode !== ' ') {
+            const piece = document.createElement('div');
+            piece.classList.add('piece');
+            piece.draggable = true;
+            piece.textContent = pieces[pieceCode];
+            square.appendChild(piece);
+          }
         }
       }
-    </script>
-  </div>
+
+      // Add file notations (a-h)
+      for (let file = 0; file < 8; file++) {
+        const notation = document.createElement('div');
+        notation.classList.add('notation', 'notation-file');
+        notation.style.left = `${file * 60}px`;
+        notation.textContent = String.fromCharCode(97 + file);
+        board.appendChild(notation);
+      }
+
+      // Add rank notations (1-8)
+      for (let rank = 0; rank < 8; rank++) {
+        const notation = document.createElement('div');
+        notation.classList.add('notation', 'notation-rank');
+        notation.style.top = `${rank * 60}px`;
+        notation.textContent = 8 - rank;
+        board.appendChild(notation);
+      }
+    }
+
+    function addDragAndDrop() {
+      const pieces = document.querySelectorAll('.piece');
+
+      pieces.forEach(piece => {
+        piece.addEventListener('dragstart', (e) => {
+          e.dataTransfer.setData('text/plain', e.target.parentNode.dataset.rank + e.target.parentNode.dataset.file);
+          setTimeout(() => e.target.style.visibility = 'hidden', 0);
+        });
+
+        piece.addEventListener('dragend', (e) => {
+          e.target.style.visibility = 'visible';
+        });
+      });
+
+      const squares = document.querySelectorAll('.square');
+      squares.forEach(square => {
+        square.addEventListener('dragover', (e) => e.preventDefault());
+        square.addEventListener('drop', (e) => {
+          e.preventDefault();
+          const from = e.dataTransfer.getData('text/plain');
+          const fromSquare = [...squares].find(sq => sq.dataset.rank + sq.dataset.file === from);
+          const piece = fromSquare.querySelector('.piece');
+          if (piece && square !== fromSquare) {
+            square.appendChild(piece);
+          }
+        });
+      });
+    }
+
+    createChessBoard();
+    addDragAndDrop();
+  </script>
 </body>
 </html>
