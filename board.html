@@ -1,167 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Chess Board</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-        }
-        .board-container {
-            display: flex;
-            align-items: center;
-        }
-        .board {
-            display: grid;
-            grid-template-columns: repeat(8, 60px);
-            grid-template-rows: repeat(8, 60px);
-            border: 2px solid #333;
-        }
-        .square {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 40px;
-            user-select: none;
-        }
-        .white {
-            background-color: #f0d9b5;
-        }
-        .black {
-            background-color: #b58863;
-        }
-        .notation {
-            display: flex;
-            flex-direction: column;
-            margin-right: 10px;
-        }
-        .horizontal-notation {
-            display: flex;
-            margin-left: 30px;
-        }
-        .notation-vertical {
-            width: 30px;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            text-align: right;
-            margin-right: 5px;
-        }
-        .notation-horizontal {
-            width: 480px;
-            display: flex;
-            justify-content: space-around;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Board</title>
+  <style>
+    .chess-board {
+      display: grid;
+      grid-template-columns: repeat(8, 50px);
+      grid-template-rows: repeat(8, 50px);
+      border: 2px solid black;
+      width: 400px;
+      height: 400px;
+    }
+    .chess-board div {
+      width: 50px;
+      height: 50px;
+    }
+    .black {
+      background-color: #769656;
+    }
+    .white {
+      background-color: #eeeed2;
+    }
+  </style>
 </head>
 <body>
-    <div class="board-container">
-        <div class="notation-vertical">
-            <span>8</span>
-            <span>7</span>
-            <span>6</span>
-            <span>5</span>
-            <span>4</span>
-            <span>3</span>
-            <span>2</span>
-            <span>1</span>
-        </div>
-        <div>
-            <div class="board">
-                <!-- White pieces first row -->
-                <div class="square white">♜</div>
-                <div class="square black">♞</div>
-                <div class="square white">♝</div>
-                <div class="square black">♛</div>
-                <div class="square white">♚</div>
-                <div class="square black">♝</div>
-                <div class="square white">♞</div>
-                <div class="square black">♜</div>
-
-                <!-- White pawns -->
-                <div class="square black">♟</div>
-                <div class="square white">♟</div>
-                <div class="square black">♟</div>
-                <div class="square white">♟</div>
-                <div class="square black">♟</div>
-                <div class="square white">♟</div>
-                <div class="square black">♟</div>
-                <div class="square white">♟</div>
-
-                <!-- Empty squares -->
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-                <div class="square black"></div>
-                <div class="square white"></div>
-
-                <!-- Black pawns -->
-                <div class="square white">♙</div>
-                <div class="square black">♙</div>
-                <div class="square white">♙</div>
-                <div class="square black">♙</div>
-                <div class="square white">♙</div>
-                <div class="square black">♙</div>
-                <div class="square white">♙</div>
-                <div class="square black">♙</div>
-
-                <!-- Black pieces last row -->
-                <div class="square black">♖</div>
-                <div class="square white">♘</div>
-                <div class="square black">♗</div>
-                <div class="square white">♕</div>
-                <div class="square black">♔</div>
-                <div class="square white">♗</div>
-                <div class="square black">♘</div>
-                <div class="square white">♖</div>
-            </div>
-            <div class="notation-horizontal">
-                <span>a</span>
-                <span>b</span>
-                <span>c</span>
-                <span>d</span>
-                <span>e</span>
-                <span>f</span>
-                <span>g</span>
-                <span>h</span>
-            </div>
-        </div>
-    </div>
+  <div class="chess-board">
+    <!-- Generate alternating black and white squares -->
+    <script>
+      const board = document.querySelector('.chess-board');
+      for (let row = 0; row < 8; row++) {
+        for (let col = 0; col < 8; col++) {
+          const square = document.createElement('div');
+          square.className = (row + col) % 2 === 0 ? 'white' : 'black';
+          board.appendChild(square);
+        }
+      }
+    </script>
+  </div>
 </body>
 </html>
