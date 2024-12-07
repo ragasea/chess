@@ -15,17 +15,22 @@
       background-color: #f0f0f0;
     }
 
+    .board-container {
+      position: relative;
+      width: 320px;
+    }
+
     .board {
       display: grid;
-      grid-template-columns: repeat(8, 60px);
-      grid-template-rows: repeat(8, 60px);
+      grid-template-columns: repeat(8, 40px);
+      grid-template-rows: repeat(8, 40px);
       border: 2px solid #333;
       position: relative;
     }
 
     .square {
-      width: 60px;
-      height: 60px;
+      width: 40px;
+      height: 40px;
       display: flex;
       justify-content: center;
       align-items: center;
@@ -41,26 +46,26 @@
 
     .notation {
       position: absolute;
-      font-size: 12px;
+      font-size: 10px;
       pointer-events: none;
       color: #333;
     }
 
     .notation-file {
-      bottom: -20px;
+      bottom: -15px;
       text-align: center;
-      width: 60px;
+      width: 40px;
     }
 
     .notation-rank {
-      left: -20px;
+      left: -15px;
       text-align: center;
-      height: 60px;
-      line-height: 60px;
+      height: 40px;
+      line-height: 40px;
     }
 
     .piece {
-      font-size: 40px;
+      font-size: 28px;
       cursor: grab;
     }
 
@@ -70,7 +75,9 @@
   </style>
 </head>
 <body>
-  <div class="board" id="chessboard"></div>
+  <div class="board-container">
+    <div class="board" id="chessboard"></div>
+  </div>
 
   <script>
     const board = document.getElementById('chessboard');
@@ -118,7 +125,7 @@
       for (let file = 0; file < 8; file++) {
         const notation = document.createElement('div');
         notation.classList.add('notation', 'notation-file');
-        notation.style.left = `${file * 60}px`;
+        notation.style.left = `${file * 40}px`;
         notation.textContent = String.fromCharCode(97 + file);
         board.appendChild(notation);
       }
@@ -127,7 +134,7 @@
       for (let rank = 0; rank < 8; rank++) {
         const notation = document.createElement('div');
         notation.classList.add('notation', 'notation-rank');
-        notation.style.top = `${rank * 60}px`;
+        notation.style.top = `${rank * 40}px`;
         notation.textContent = 8 - rank;
         board.appendChild(notation);
       }
